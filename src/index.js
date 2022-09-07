@@ -42,6 +42,15 @@ function search(event) {
   let apiKey = "3499ef150985eccadd080ff408a018df";
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
 }
+function searchLocation(position) {
+  let apiKey = "3499ef150985eccadd080ff408a018df";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
+}
+function currentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
 
 let forms = document.querySelector("#form");
 forms.addEventListener("submit", search);
@@ -54,3 +63,6 @@ function temps(event) {
 }
 let tempForm = document.querySelector("#fTemp");
 tempForm.addEventListener("click", temps);
+
+let button = document.querySelector("#current");
+button.addEventListener("click", currentLocation);
