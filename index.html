@@ -15,6 +15,58 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
- hello
+    <div class="container">
+        <div class="weatherapp">
+          <footer>
+            <div class="row">
+              <div class="col-6">
+            <form id="form">
+              <input type="text" placeholder="Enter city" autocomplete="off" id="search"/>
+            </div>
+              <div class="col-3">
+              <input type="submit" value="search" id="submit-form"/>
+              </div>
+            </form>
+            <div class="col-3">
+              <button type="button" class="btn btn-secondary"
+              id="current">current</button>
+            </div>
+          </div>
+        <h1>
+          Location
+        </h1>
+        <ul>
+          <li class="date">
+            Thursday
+          </li>
+          <li class="time">
+            11:53 Am
+          </li>
+        </ul>
+        
+        <div class="row">
+          <div class="col-6">
+          <div id="ho">
+            <img src="img/cloud+rain.jpg">
+            <span id="cTemp">__ </span> <span id="C">°C </span> | <a href="#" id="fTemp"> °F </a>
+          </div>
+          </div>
+          <div class="col-6">
+            <ul>
+              <li>
+                  <span>H:</span><span id="h">__</span><span>°C</span>
+              </li>
+              <li>
+                  <span>L:</span><span id="L">__</span><span> °C</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+      </div>
+  </div>
+  
+      <script src="src/index.js"></script>
     </body>
 </html>
