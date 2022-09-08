@@ -1,4 +1,4 @@
-footer {
+body {
   font-family: "Rubik Maze", cursive;
 }
 li {
@@ -20,4 +20,8 @@ ul {
   margin: 20px auto;
   max-width: 500px;
   border-radius: 20px;
+}
+.wrapper{
+  margin: 20px auto;
+  max-width: 500px;
 }
