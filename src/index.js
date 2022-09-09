@@ -57,16 +57,22 @@ function currentLocation(event) {
 }
 
 
-function convert(event) {
+function convertF(event) {
   event.preventDefault();
+  
   let farenheitElement = document.querySelector("#cTemp");
   let fahrenheitTemp = (celsius * 9) / 5 + 32;
-  farenheitElement.innerHTML = Math.round(fahrenheitTemp);
-  
+  farenheitElement.innerHTML = Math.round(fahrenheitTemp); 
 
 }
-let celsius = null;
+ function convertC(Event){
+  Event.preventDefault();
+ 
 
+  let fahrenheitElement = document.querySelector("#cTemp");
+  fahrenheitElement.innerHTML = Math.round(celsius);
+}
+let celsius = null;
 let forms = document.querySelector("#form");
 forms.addEventListener("submit", search);
 
@@ -74,8 +80,11 @@ let button = document.querySelector("#current");
 button.addEventListener("click", currentLocation);
 
 let fahrenheit = document.querySelector("#fTemp");
-fahrenheit.addEventListener("click", convert);
+fahrenheit.addEventListener("click", convertF);
 
+
+let celsiusT = document.querySelector("#C");
+celsiusT.addEventListener("click", convertC);
 
 
 
