@@ -25,3 +25,16 @@ ul {
   margin: 20px auto;
   max-width: 500px;
 }
+.active{
+  color: black;
+  text-decoration: none;
+}
+.active:hover{
+  text-decoration: none;
+}
+.activs{
+  text-decoration: none;
+  color: black;
+}
+
+
