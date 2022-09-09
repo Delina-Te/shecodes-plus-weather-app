@@ -38,7 +38,29 @@ function showTemperature(response) {
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
+function displayforcast() {
+  
+  let forcast = document.querySelector("#weather-forcast");
+  console.log(forcast);
+  let days = ["Sat", "Sun", "Mon","Tue","Wed"];
+  let forcastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forcastHTML =
+      forcastHTML +
+      `<div class="col-2">
+<div class="weather-forcast-days"> ${day}</div>
+<img src="http://openweathermap.org/img/wn/50d@2x.png" width="50" class="weather-forcast-img">
+<div class="weather-forcast-temperature">
+    <span class="max">18°</span><span class="min">10°</span>
+</div>
+</div>
+`;
+  });
+  forcastHTML = forcastHTML + `</div>`;
+  forcast.innerHTML = forcastHTML;
+ }
 
+ 
 function search(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search");
@@ -56,6 +78,7 @@ function currentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
+displayforcast();
 
 function convertF(event) {
   event.preventDefault();
