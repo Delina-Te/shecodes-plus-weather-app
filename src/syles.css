@@ -25,6 +25,7 @@ ul {
   margin: 20px auto;
   max-width: 500px;
 }
+
 .active{
   color: black;
   text-decoration: none;
@@ -34,6 +35,14 @@ ul {
 }
 .activs{
   text-decoration: none;
+  color: black;
+}
+.weather-forcast{
+  color: #706f70;
+  text-align: center;
+  margin: 20px auto;
+}
+.max{
   color: black;
 }
 
