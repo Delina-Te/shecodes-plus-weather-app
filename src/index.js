@@ -22,14 +22,34 @@ if (min < 10) {
 let time = document.querySelector("li.time");
 time.innerHTML = `${times}:${min}`;
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "wed", "Thu", "Fri", "Sat"];
+
+
+
+  return days[day];
+}
+
+
+function getForcast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "3499ef150985eccadd080ff408a018df";
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayforcast); 
+}
+
+
 function showTemperature(response) {
   let temperature = response.data.main.temp;
   document.querySelector("h1").innerHTML = response.data.name;
   document.querySelector("#h").innerHTML = Math.round(
     response.data.main.temp_max
   );
+
   celsius = response.data.main.temp;
-  
+    
   document.querySelector("#L").innerHTML = Math.round(
     response.data.main.temp_min
   );
@@ -37,24 +57,29 @@ function showTemperature(response) {
   all.innerHTML = Math.round(temperature);
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-}
-function displayforcast() {
   
+  getForcast(response.data.coord);
+}
+function displayforcast(response) {
+  let forcasts= response.data.daily;
   let forcast = document.querySelector("#weather-forcast");
-  console.log(forcast);
-  let days = ["Sat", "Sun", "Mon","Tue","Wed"];
+ 
   let forcastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forcastHTML =
-      forcastHTML +
-      `<div class="col-2">
-<div class="weather-forcast-days"> ${day}</div>
-<img src="http://openweathermap.org/img/wn/50d@2x.png" width="50" class="weather-forcast-img">
-<div class="weather-forcast-temperature">
-    <span class="max">18°</span><span class="min">10°</span>
+  forcasts.forEach(function (forcastsDay, index) {
+    if (index < 6) {
+      forcastHTML =
+        forcastHTML +
+        `<div class="col-2">
+<div class="weather-forcast-days"> ${formatDay(forcastsDay.dt)}</div>
+<img src="http://openweathermap.org/img/wn/${forcastsDay.weather[0].icon}@2x.png" width="50" class="weather-forcast-img">
+<div class="weather-forcast-temperature";
+    <span class="max">${Math.round(forcastsDay.temp.max)}°</span><span class="min">${Math.round(forcastsDay.temp.min)}</span>
 </div>
 </div>
 `;
+    
+    }
+    
   });
   forcastHTML = forcastHTML + `</div>`;
   forcast.innerHTML = forcastHTML;
@@ -76,9 +101,10 @@ function searchLocation(position) {
 function currentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchLocation);
+  
+  
 }
 
-displayforcast();
 
 function convertF(event) {
   event.preventDefault();
